@@ -20,10 +20,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "16"  # 使用 Node.js 16 兼容你的 Next.js
+          node-version: "16"
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps  # 关键修改！
 
       - name: Build and Export
         run: |
