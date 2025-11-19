@@ -26,16 +26,14 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build
-        run: npm run build  # 只运行构建，不运行导出
+        run: npm run build
 
       - name: Debug - Check output
         run: |
           echo "=== Build output structure ==="
           ls -la
-          echo "=== Checking for static export ==="
-          [ -d "./out" ] && echo "out exists:" && ls -la out/
-          [ -d "./dist" ] && echo "dist exists:" && ls -la dist/
-          [ -d "./build" ] && echo "build exists:" && ls -la build/
+          echo "=== out folder contents ==="
+          ls -la out/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -43,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out  # 如果调试显示其他目录，可能需要修改这里
+          path: ./out
 
   deploy:
     environment:
